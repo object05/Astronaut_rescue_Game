@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class MovementComponent : MonoBehaviour
 {
-    public float movementSpeed = 1f;
+    public float movementSpeed;
     private CharacterController controller;
     private Vector3 move;
 
@@ -14,7 +14,7 @@ public class MovementComponent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        controller = gameObject.AddComponent<CharacterController>();
+        //controller = gameObject.AddComponent<CharacterController>();
         move = new Vector3(0,0,0);
         Debug.Log("Started");
     }
@@ -31,6 +31,7 @@ public class MovementComponent : MonoBehaviour
         {
             Debug.Log("right");
         }
-        controller.Move(move * Time.deltaTime * movementSpeed);
+        //controller.Move(move * Time.deltaTime * movementSpeed);
+        gameObject.transform.Translate(move * Time.deltaTime * movementSpeed);
     }
 }

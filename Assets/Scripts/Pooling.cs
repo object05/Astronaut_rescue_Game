@@ -44,7 +44,6 @@ public class Pooling : MonoBehaviour
             obj.transform.localScale = size;
             obj.GetComponent<EntityMovementComponent>().velocity = velocity;
 
-
             dictPool[name].Enqueue(obj);
             return obj;
         }
@@ -53,6 +52,12 @@ public class Pooling : MonoBehaviour
             Debug.LogWarning("No such name in pool dictionary: " + name);
             return null;
         }
+    }
+
+    public void Push(string name, GameObject item)
+    {
+        item.SetActive(false);
+        dictPool[name].Enqueue(item);
     }
 
 }

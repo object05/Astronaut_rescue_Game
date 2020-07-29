@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectSpawner : MonoBehaviour
+public class MeteorSpawner : MonoBehaviour
 {
 
     public float interval;
@@ -15,8 +15,6 @@ public class ObjectSpawner : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
-
-
     }
 
     // Update is called once per frame
@@ -30,11 +28,11 @@ public class ObjectSpawner : MonoBehaviour
 
 
             Vector3 size = new Vector3(Random.Range(0.5f, 1.5f), Random.Range(0.5f, 1.5f));
-            Vector3 position = new Vector3(Random.Range(0,halfWidth), halfHeight, 0);
+            Vector3 position = new Vector3(Random.Range(-halfWidth,halfWidth), halfHeight, 0);
             Quaternion rotation = new Quaternion(Random.Range(0, 180),0,0,0);
-            float velocity = Random.Range(1, 3);
+            float velocity = Random.Range(1f, 3f);
             //spawn here
-            Pooling.Instance.Pull("Meteor", size,position,rotation, velocity);
+            Pooling.Instance.Pull(spawnObject.name, size,position,rotation,velocity);
             timer = interval;
         }
     }
