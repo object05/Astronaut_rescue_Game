@@ -33,7 +33,7 @@ public class Pooling : MonoBehaviour
         }
     }
 
-    public GameObject Pull(string name, Vector3 size, Vector3 position, Quaternion rotation)
+    public GameObject Pull(string name, Vector3 size, Vector3 position, Quaternion rotation, float velocity)
     {
         if (dictPool.ContainsKey(name))
         {
@@ -42,8 +42,8 @@ public class Pooling : MonoBehaviour
             obj.transform.rotation = rotation;
             obj.transform.position = position;
             obj.transform.localScale = size;
+            obj.GetComponent<EntityMovementComponent>().velocity = velocity;
 
-            //TODO SPEED
 
             dictPool[name].Enqueue(obj);
             return obj;
