@@ -5,12 +5,16 @@ using UnityEngine;
 public class AstronautSpawner : MonoBehaviour
 {
 
-    public float interval;
+    private float interval;
     public GameObject spawnObject;
     public float timer;
     public bool stopSpawner = false;
 
-    // Update is called once per frame
+    void Start()
+    {
+        interval = timer;
+    }
+
     void Update()
     {
         if (!stopSpawner)

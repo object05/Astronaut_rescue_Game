@@ -6,6 +6,7 @@ public class RemoveComponent : MonoBehaviour
 {
     public void forceRemove()
     {
-        Pooling.Instance.Push(gameObject.name, gameObject);
+        GameManager.instance.GetComponent<DebugMode>().removeLine(gameObject);
+        Pooling.Instance.Push(gameObject.tag, gameObject);
     }
 }

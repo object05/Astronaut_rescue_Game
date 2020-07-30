@@ -10,21 +10,18 @@ public class MovementComponent : MonoBehaviour
     private CharacterController controller;
     private Vector3 move;
 
-    float halfWidth;
-    float halfHeight;
-
     // Start is called before the first frame update
     void Start()
     {
-        halfHeight = Camera.main.orthographicSize;
-        halfWidth = Camera.main.aspect * halfHeight;
         move = new Vector3(0,0,0);
-        Debug.Log("Started");
     }
 
     // Update is called once per frame
     void Update()
     {
+        float halfHeight = GameManager.instance.halfHeight;
+        float halfWidth = GameManager.instance.halfWidth;
+
         halfHeight = Camera.main.orthographicSize;//todo make better
         halfWidth = Camera.main.aspect * halfHeight;
 

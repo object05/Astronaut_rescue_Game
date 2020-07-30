@@ -5,13 +5,17 @@ using UnityEngine;
 public class MeteorSpawner : MonoBehaviour
 {
 
-    public float interval;
+    private float interval;
     public GameObject spawnObject;
     public float timer;
     public bool stopSpawner = false;
 
+    void Start()
+    {
+        interval = timer;
+    }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (!stopSpawner)
@@ -19,7 +23,6 @@ public class MeteorSpawner : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer <= 0f)
             {
-
                 Vector3 size = new Vector3(Random.Range(0.5f, 1.5f), Random.Range(0.5f, 1.5f));
                 Vector3 position = new Vector3(Random.Range(-GameManager.instance.halfWidth, GameManager.instance.halfWidth), GameManager.instance.halfHeight, 0);
                 Quaternion rotation = new Quaternion(Random.Range(0, 180), 0, 0, 0);

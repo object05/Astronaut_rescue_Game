@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public float halfWidth;
 
 
+
     void Awake()
     {
         MakeSingleton();
@@ -28,9 +29,8 @@ public class GameManager : MonoBehaviour
     {
         cam = Camera.main;
         reset();
-        txtHealth.text = "HIGH:" + health;
+        txtHealth.text = "LIFE:" + health;
         txtScore.text = "SCORE:" + score;
-
         halfHeight = cam.orthographicSize;
         halfWidth = cam.aspect * halfHeight;
     }
@@ -39,6 +39,12 @@ public class GameManager : MonoBehaviour
     {
         halfHeight = cam.orthographicSize;
         halfWidth = cam.aspect * halfHeight;
+
+
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            DebugMode.instance.toggleDebugging();
+        }
     }
 
 
@@ -65,9 +71,13 @@ public class GameManager : MonoBehaviour
     public void Damage()
     {
         health -= 10;
+        txtHealth.text = "LIFE:" + health;
     }
     public void Score()
     {
         score += 1;
+        txtScore.text = "SCORE:" + score;
     }
+
+
 }

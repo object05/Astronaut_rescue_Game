@@ -44,7 +44,7 @@ public class Pooling : MonoBehaviour
             obj.transform.localScale = size;
             obj.GetComponent<EntityMovementComponent>().velocity = velocity;
 
-            dictPool[name].Enqueue(obj);
+            //dictPool[name].Enqueue(obj);
             return obj;
         }
         else
