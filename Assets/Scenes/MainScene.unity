@@ -663,7 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57c412e14d278740a2487024b5e32e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enabled: 1
+  debug: 0
   rocket: {fileID: 1216112975}
 --- !u!1 &1829311220
 GameObject:
@@ -810,6 +810,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocket
       objectReference: {fileID: 0}
+    - target: {fileID: 2734044023110975223, guid: d12bf760a5075964a8e46e41b0ee24ab,
+        type: 3}
+      propertyPath: hit
+      value: 
+      objectReference: {fileID: 8300000, guid: 7ee0f18ca7f6aac4cac440efb988bd3a, type: 3}
+    - target: {fileID: 2734044023110975223, guid: d12bf760a5075964a8e46e41b0ee24ab,
+        type: 3}
+      propertyPath: pick_up
+      value: 
+      objectReference: {fileID: 8300000, guid: ba5bb399904a6644686bfceb3c7973c3, type: 3}
+    - target: {fileID: 2734044023110975223, guid: d12bf760a5075964a8e46e41b0ee24ab,
+        type: 3}
+      propertyPath: a
+      value: 
+      objectReference: {fileID: 8300000, guid: 7ee0f18ca7f6aac4cac440efb988bd3a, type: 3}
+    - target: {fileID: 2734044023110975223, guid: d12bf760a5075964a8e46e41b0ee24ab,
+        type: 3}
+      propertyPath: Pick
+      value: 
+      objectReference: {fileID: 8300000, guid: ba5bb399904a6644686bfceb3c7973c3, type: 3}
+    - target: {fileID: 2734044023110975223, guid: d12bf760a5075964a8e46e41b0ee24ab,
+        type: 3}
+      propertyPath: Hit
+      value: 
+      objectReference: {fileID: 8300000, guid: 7ee0f18ca7f6aac4cac440efb988bd3a, type: 3}
     - target: {fileID: 6007460768476752343, guid: d12bf760a5075964a8e46e41b0ee24ab,
         type: 3}
       propertyPath: m_Mass
