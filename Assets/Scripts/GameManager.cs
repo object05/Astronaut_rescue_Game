@@ -14,24 +14,45 @@ public class GameManager : MonoBehaviour
     public Text txtScore;
     public Text txtmax_score;
 
+    private Camera cam;
+    public float halfHeight;
+    public float halfWidth;
+
+
     void Awake()
     {
         MakeSingleton();
+    }
+
+    void Start()
+    {
+        cam = Camera.main;
         reset();
         txtHealth.text = "HIGH:" + health;
         txtScore.text = "SCORE:" + score;
+
+        halfHeight = cam.orthographicSize;
+        halfWidth = cam.aspect * halfHeight;
     }
+
+    void Update()
+    {
+        halfHeight = cam.orthographicSize;
+        halfWidth = cam.aspect * halfHeight;
+    }
+
+
 
     private void MakeSingleton()
     {
-        if(instance = null)
+        if(instance != null)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);
         }
         else
         {
-            Destroy(gameObject);
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 

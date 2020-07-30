@@ -7,5 +7,8 @@ public class CollisionTriggerComponent : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Hit detected between " + gameObject.name + " and " + other.gameObject.name);
+        //todo delete object
+        //todo sound play
+        //todo particle effect
     }
 }

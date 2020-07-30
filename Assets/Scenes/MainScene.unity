@@ -660,6 +660,8 @@ MonoBehaviour:
   txtHealth: {fileID: 9097133}
   txtScore: {fileID: 1829311223}
   txtmax_score: {fileID: 1063661708}
+  halfHeight: 0
+  halfWidth: 0
 --- !u!4 &1508386468
 Transform:
   m_ObjectHideFlags: 0
