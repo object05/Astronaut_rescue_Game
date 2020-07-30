@@ -17,18 +17,21 @@ public class AstronautSpawner : MonoBehaviour
 
     void Update()
     {
-        if (!stopSpawner)
+        if (!GameManager.instance.isPause)
         {
-            timer -= Time.deltaTime;
-            if (timer <= 0f)
+            if (!stopSpawner)
             {
-                Vector3 size = new Vector3(1, 1);
-                Vector3 position = new Vector3(Random.Range(-GameManager.instance.halfWidth, GameManager.instance.halfWidth), GameManager.instance.halfHeight, 0);
-                Quaternion rotation = new Quaternion(Random.Range(0, 180), 0, 0, 0);
-                float velocity = Random.Range(1f, 3f);
-                //spawn here
-                Pooling.Instance.Pull(spawnObject.name, size, position, rotation, velocity);
-                timer = interval;
+                timer -= Time.deltaTime;
+                if (timer <= 0f)
+                {
+                    Vector3 size = new Vector3(1, 1);
+                    Vector3 position = new Vector3(Random.Range(-GameManager.instance.halfWidth, GameManager.instance.halfWidth), GameManager.instance.halfHeight, 0);
+                    Quaternion rotation = new Quaternion(Random.Range(0, 180), 0, 0, 0);
+                    float velocity = Random.Range(1f, 3f);
+                    //spawn here
+                    Pooling.Instance.Pull(spawnObject.name, size, position, rotation, velocity);
+                    timer = interval;
+                }
             }
         }
     }

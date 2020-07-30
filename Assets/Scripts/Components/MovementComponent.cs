@@ -19,23 +19,26 @@ public class MovementComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float halfHeight = GameManager.instance.halfHeight;
-        float halfWidth = GameManager.instance.halfWidth;
-
-        halfHeight = Camera.main.orthographicSize;//todo make better
-        halfWidth = Camera.main.aspect * halfHeight;
-
-        move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-        gameObject.transform.Translate(move * Time.deltaTime * movementSpeed);
-
-
-        if (gameObject.transform.position.x < -halfWidth+(GetComponent<SpriteRenderer>().bounds.size.x)/2)//left wall
+        if (!GameManager.instance.isPause)
         {
-            gameObject.transform.position = new Vector3(-halfWidth + (GetComponent<SpriteRenderer>().bounds.size.x) / 2, gameObject.transform.position.y, gameObject.transform.position.z);
-        }
-        else if (gameObject.transform.position.x > halfWidth-(GetComponent<SpriteRenderer>().bounds.size.x)/2)//right wall
-        {
-            gameObject.transform.position = new Vector3(halfWidth - (GetComponent<SpriteRenderer>().bounds.size.x) / 2, gameObject.transform.position.y, gameObject.transform.position.z);
+            float halfHeight = GameManager.instance.halfHeight;
+            float halfWidth = GameManager.instance.halfWidth;
+
+            halfHeight = Camera.main.orthographicSize;//todo make better
+            halfWidth = Camera.main.aspect * halfHeight;
+
+            move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+            gameObject.transform.Translate(move * Time.deltaTime * movementSpeed);
+
+
+            if (gameObject.transform.position.x < -halfWidth + (GetComponent<SpriteRenderer>().bounds.size.x) / 2)//left wall
+            {
+                gameObject.transform.position = new Vector3(-halfWidth + (GetComponent<SpriteRenderer>().bounds.size.x) / 2, gameObject.transform.position.y, gameObject.transform.position.z);
+            }
+            else if (gameObject.transform.position.x > halfWidth - (GetComponent<SpriteRenderer>().bounds.size.x) / 2)//right wall
+            {
+                gameObject.transform.position = new Vector3(halfWidth - (GetComponent<SpriteRenderer>().bounds.size.x) / 2, gameObject.transform.position.y, gameObject.transform.position.z);
+            }
         }
     }
 }

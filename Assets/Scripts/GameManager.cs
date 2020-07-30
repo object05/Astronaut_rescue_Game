@@ -13,10 +13,14 @@ public class GameManager : MonoBehaviour
     public Text txtHealth;
     public Text txtScore;
     public Text txtmax_score;
+    public Text infoText;
 
     private Camera cam;
     public float halfHeight;
     public float halfWidth;
+
+    public bool isPause = false;
+    public bool isGameOver = false;
 
 
 
@@ -45,6 +49,34 @@ public class GameManager : MonoBehaviour
         {
             DebugMode.instance.toggleDebugging();
         }
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            if (!isGameOver)
+            {
+
+                if (isPause)
+                {
+                    infoText.text = "";
+                }
+                else
+                {
+                    infoText.text = "GAME PAUSED";
+                }
+                isPause = !isPause;
+            }
+            else
+            {
+                reset();
+                infoText.color = Color.yellow;
+                infoText.text = "";
+                GameObject rocket = GameObject.FindGameObjectWithTag("Rocket");
+                rocket.transform.position = new Vector3(0, -halfHeight+rocket.GetComponent<SpriteRenderer>().size.y/2,0);
+                Pooling.Instance.ResetPools();
+
+                isPause = false;
+            
+            }
+        }
     }
 
 
@@ -72,12 +104,20 @@ public class GameManager : MonoBehaviour
     {
         health -= 10;
         txtHealth.text = "LIFE:" + health;
+        if(health <= 0)
+        {
+            isGameOver = true;
+            isPause = true;
+            infoText.text = "GAME OVER";
+            infoText.color = Color.red;
+        }
     }
     public void Score()
     {
         score += 1;
         txtScore.text = "SCORE:" + score;
     }
+
 
 
 }

@@ -60,4 +60,9 @@ public class Pooling : MonoBehaviour
         dictPool[name].Enqueue(item);
     }
 
+    public void ResetPools()
+    {
+        //Start();
+    }
+
 }

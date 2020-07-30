@@ -67,7 +67,6 @@ public class DebugMode : MonoBehaviour
                 removeLine(aW);
             }
             removeLine(rocket);
-
         }
         debug = !debug;
     }
