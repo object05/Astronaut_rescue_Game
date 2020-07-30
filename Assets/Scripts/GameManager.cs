@@ -53,7 +53,6 @@ public class GameManager : MonoBehaviour
         {
             if (!isGameOver)
             {
-
                 if (isPause)
                 {
                     infoText.text = "";
@@ -72,9 +71,7 @@ public class GameManager : MonoBehaviour
                 GameObject rocket = GameObject.FindGameObjectWithTag("Rocket");
                 rocket.transform.position = new Vector3(0, -halfHeight+rocket.GetComponent<SpriteRenderer>().size.y/2,0);
                 Pooling.Instance.ResetPools();
-
                 isPause = false;
-            
             }
         }
     }

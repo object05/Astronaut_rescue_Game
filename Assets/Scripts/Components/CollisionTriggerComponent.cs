@@ -16,7 +16,7 @@ public class CollisionTriggerComponent : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Hit detected between " + gameObject.name + " and " + other.name);
+        //Debug.Log("Hit detected between " + gameObject.name + " and " + other.name);
         other.GetComponent<RemoveComponent>().forceRemove();//pushes to pool
         
 

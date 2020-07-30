@@ -62,7 +62,14 @@ public class Pooling : MonoBehaviour
 
     public void ResetPools()
     {
-        //Start();
+        foreach (var pool in dictPool)
+        {
+            foreach(var item in pool.Value)
+            {
+                Debug.Log(item.tag);
+            }
+            //Debug.Log(pool.Key);
+        }
     }
 
 }
