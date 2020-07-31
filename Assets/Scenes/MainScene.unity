@@ -725,11 +725,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - poolSize: 4
+  - poolSize: 10
     name: Astronaut_white
     objectToPool: {fileID: 433725839981696755, guid: 53fac7cef59bbb04ea324df0fdf6a403,
       type: 3}
-  - poolSize: 4
+  - poolSize: 10
     name: Meteor
     objectToPool: {fileID: 1060328820356218871, guid: 23495c9f579c5224fae8ec0ed718fdd8,
       type: 3}

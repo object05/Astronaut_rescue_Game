@@ -15,6 +15,8 @@ public class Pooling : MonoBehaviour
 
     public Dictionary<string, Queue<GameObject>> dictPool;//pool dictionary, so we can reference with tags
     public List<Pool> pools; //list of pools
+    public List<GameObject> active; //for tracking active objects from here
+
 
     void Start()
     {
@@ -38,12 +40,13 @@ public class Pooling : MonoBehaviour
         if (dictPool.ContainsKey(name))
         {
             GameObject obj = dictPool[name].Dequeue();
+            
             obj.SetActive(true);
             obj.transform.rotation = rotation;
             obj.transform.position = position;
             obj.transform.localScale = size;
             obj.GetComponent<EntityMovementComponent>().velocity = velocity;
-
+            active.Add(obj);
             //dictPool[name].Enqueue(obj);
             return obj;
         }
@@ -56,20 +59,21 @@ public class Pooling : MonoBehaviour
 
     public void Push(string name, GameObject item)
     {
+
         item.SetActive(false);
         dictPool[name].Enqueue(item);
+        active.Remove(item);
     }
 
     public void ResetPools()
     {
-        foreach (var pool in dictPool)
+        for(int i = 0; i < active.Count; i++)
         {
-            foreach(var item in pool.Value)
-            {
-                Debug.Log(item.tag);
-            }
-            //Debug.Log(pool.Key);
+            active[i].SetActive(false);
+            dictPool[active[i].tag].Enqueue(active[i]);
+            Debug.Log(active[i].tag);
         }
+        active.Clear();
     }
 
 }
