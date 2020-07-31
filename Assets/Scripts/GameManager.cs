@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
     public bool isPause = false;
     public bool isGameOver = false;
 
+    int bestScore;
+
 
 
     void Awake()
@@ -31,10 +34,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        bestScore = PlayerPrefs.GetInt("high", 0);
+
         cam = Camera.main;
         reset();
         txtHealth.text = "LIFE:" + health;
         txtScore.text = "SCORE:" + score;
+        txtmax_score.text = "HIGH:" + bestScore;
         halfHeight = cam.orthographicSize;
         halfWidth = cam.aspect * halfHeight;
     }
@@ -56,10 +62,13 @@ public class GameManager : MonoBehaviour
                 if (isPause)
                 {
                     infoText.text = "";
+                    //GameObject.FindGameObjectWithTag("BackgroundPS").SetActive(true);
                 }
                 else
                 {
                     infoText.text = "GAME PAUSED";
+                    //ParticleSystem.PS.enabled = true;
+                    GameObject.FindGameObjectWithTag("BackgroundPS").SetActive(false);
                 }
                 isPause = !isPause;
             }
@@ -69,7 +78,7 @@ public class GameManager : MonoBehaviour
                 infoText.color = Color.yellow;
                 infoText.text = "";
                 GameObject rocket = GameObject.FindGameObjectWithTag("Rocket");
-                rocket.transform.position = new Vector3(0, -halfHeight+rocket.GetComponent<SpriteRenderer>().size.y/2,0);
+                rocket.transform.position = new Vector3(0, -halfHeight+rocket.GetComponent<SpriteRenderer>().size.y,0);
                 Pooling.Instance.ResetPools();
                 isPause = false;
             }
@@ -95,6 +104,7 @@ public class GameManager : MonoBehaviour
     {
         health = 100;
         score = 0;
+        txtmax_score.text = "HIGH:" + bestScore;
     }
 
     public void Damage()
@@ -107,6 +117,12 @@ public class GameManager : MonoBehaviour
             isPause = true;
             infoText.text = "GAME OVER";
             infoText.color = Color.red;
+
+            if(bestScore < score)
+            {
+                PlayerPrefs.SetInt("high", score);
+                bestScore = score;
+            }
         }
     }
     public void Score()

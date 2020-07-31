@@ -8,6 +8,7 @@ TagManager:
   - Astronaut_white
   - Rocket
   - Meteor
+  - BackgroundPS
   layers:
   - Default
   - TransparentFX
