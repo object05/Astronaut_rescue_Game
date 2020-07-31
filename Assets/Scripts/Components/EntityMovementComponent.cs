@@ -12,8 +12,7 @@ public class EntityMovementComponent : MonoBehaviour
     {
         if (!GameManager.instance.isPause)
         {
-            Vector3 d = new Vector3(0, 1, 0);
-            gameObject.transform.Translate(Vector3.down * Time.deltaTime * -velocity);
+            gameObject.transform.Translate(Vector3.down * Time.deltaTime * velocity);
 
             if (gameObject.transform.position.y < -GameManager.instance.halfHeight + gameObject.GetComponent<SpriteRenderer>().bounds.size.y / 2)
             {

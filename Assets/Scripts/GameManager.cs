@@ -62,13 +62,14 @@ public class GameManager : MonoBehaviour
                 if (isPause)
                 {
                     infoText.text = "";
+                    GameObject.FindGameObjectWithTag("BackgroundPS").GetComponent<ParticleSystem>().Play();
                     //GameObject.FindGameObjectWithTag("BackgroundPS").SetActive(true);
                 }
                 else
                 {
                     infoText.text = "GAME PAUSED";
-                    //ParticleSystem.PS.enabled = true;
-                    GameObject.FindGameObjectWithTag("BackgroundPS").SetActive(false);
+                    GameObject.FindGameObjectWithTag("BackgroundPS").GetComponent<ParticleSystem>().Pause();
+                    //GameObject.FindGameObjectWithTag("BackgroundPS").SetActive(false);
                 }
                 isPause = !isPause;
             }
@@ -81,6 +82,8 @@ public class GameManager : MonoBehaviour
                 rocket.transform.position = new Vector3(0, -halfHeight+rocket.GetComponent<SpriteRenderer>().size.y,0);
                 Pooling.Instance.ResetPools();
                 isPause = false;
+                GameObject.FindGameObjectWithTag("BackgroundPS").GetComponent<ParticleSystem>().Play();
+
             }
         }
     }
@@ -117,8 +120,10 @@ public class GameManager : MonoBehaviour
             isPause = true;
             infoText.text = "GAME OVER";
             infoText.color = Color.red;
+            GameObject.FindGameObjectWithTag("BackgroundPS").GetComponent<ParticleSystem>().Pause();
 
-            if(bestScore < score)
+
+            if (bestScore < score)
             {
                 PlayerPrefs.SetInt("high", score);
                 bestScore = score;
@@ -129,6 +134,13 @@ public class GameManager : MonoBehaviour
     {
         score += 1;
         txtScore.text = "SCORE:" + score;
+    }
+
+    public void Score2()
+    {
+        score += 2;
+        txtScore.text = "SCORE:" + score;
+        //tezavnost
     }
 
 

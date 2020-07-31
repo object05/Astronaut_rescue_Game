@@ -639,6 +639,7 @@ GameObject:
   - component: {fileID: 1508386470}
   - component: {fileID: 1508386469}
   - component: {fileID: 1508386472}
+  - component: {fileID: 1508386473}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -733,6 +734,10 @@ MonoBehaviour:
     name: Meteor
     objectToPool: {fileID: 1060328820356218871, guid: 23495c9f579c5224fae8ec0ed718fdd8,
       type: 3}
+  - poolSize: 10
+    name: Astronaut_orange
+    objectToPool: {fileID: 5605164725572373136, guid: aaaf5f8473220614db55b6b14f1dad68,
+      type: 3}
   active: []
 --- !u!114 &1508386472
 MonoBehaviour:
@@ -748,6 +753,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug: 0
   rocket: {fileID: 1216112975}
+--- !u!114 &1508386473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508386466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad8ec10e63dd04147b237bae84931910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnObject: {fileID: 5605164725572373136, guid: aaaf5f8473220614db55b6b14f1dad68,
+    type: 3}
+  timer: 8
+  stopSpawner: 0
 --- !u!1 &1829311220
 GameObject:
   m_ObjectHideFlags: 0

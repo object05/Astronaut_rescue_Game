@@ -35,14 +35,19 @@ public class Pooling : MonoBehaviour
         }
     }
 
-    public GameObject Pull(string name, Vector3 size, Vector3 position, Quaternion rotation, float velocity)
+    public GameObject Pull(string name, Vector3 size, Vector3 position, float rotation, float velocity)
     {
         if (dictPool.ContainsKey(name))
         {
             GameObject obj = dictPool[name].Dequeue();
             
             obj.SetActive(true);
-            obj.transform.rotation = rotation;
+            //obj.transform.rotation = rotation;
+            //var bounds = obj.GetComponent<Collider2D>().bounds;
+            //obj.GetComponent<Rigidbody2D>().MoveRotation(rotation);
+            obj.transform.Rotate(Vector3.down, rotation);
+
+
             obj.transform.position = position;
             obj.transform.localScale = size;
             obj.GetComponent<EntityMovementComponent>().velocity = velocity;

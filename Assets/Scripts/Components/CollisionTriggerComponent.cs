@@ -27,11 +27,16 @@ public class CollisionTriggerComponent : MonoBehaviour
         }
         else
         {
-            GameManager.instance.Score();
-            source.PlayOneShot(Pick);
+            if(other.tag == "Astronaut_white")
+            {
+                GameManager.instance.Score();
+                source.PlayOneShot(Pick);
+            }
+            else
+            {
+                GameManager.instance.Score2();
+                source.PlayOneShot(Pick);
+            }
         }
-
-        //todo sound play
-        //todo particle effect
     }
 }

@@ -9,7 +9,7 @@ public class DebugMode : MonoBehaviour
 
     private GameObject[] activeMeteors;
     private GameObject[] activeAstronautsWhite;
-    //private GameObject[] activeAstronautsOrange;
+    private GameObject[] activeAstronautsOrange;
     public GameObject rocket;
 
     void Awake()
@@ -22,7 +22,7 @@ public class DebugMode : MonoBehaviour
     {
         activeMeteors = GameObject.FindGameObjectsWithTag("Meteor");
         activeAstronautsWhite = GameObject.FindGameObjectsWithTag("Astronaut_white");
-        //activeAstronautsOrange = GameObject.FindGameObjectsWithTag("Astronaut_orange");
+        activeAstronautsOrange = GameObject.FindGameObjectsWithTag("Astronaut_orange");
     }
     void Update()
     {
@@ -30,7 +30,7 @@ public class DebugMode : MonoBehaviour
         {
             activeMeteors = GameObject.FindGameObjectsWithTag("Meteor");
             activeAstronautsWhite = GameObject.FindGameObjectsWithTag("Astronaut_white");
-            //activeAstronautsOrange = GameObject.FindGameObjectsWithTag("Astronaut_orange");
+            activeAstronautsOrange = GameObject.FindGameObjectsWithTag("Astronaut_orange");
             foreach(GameObject m in activeMeteors)
             {
                 setLine(m);
@@ -41,12 +41,14 @@ public class DebugMode : MonoBehaviour
                 setLine(aW);
             }
 
+            foreach (GameObject aO in activeAstronautsOrange)
+            {
+                setLine(aO);
+            }
+
             setLine(rocket);
 
-            //foreach(GameObject aO in activeAstronautsOrange)
-            //{
-            //    setLine(aO);
-            //}
+
         }
     }
 
@@ -56,7 +58,7 @@ public class DebugMode : MonoBehaviour
         {
             activeMeteors = GameObject.FindGameObjectsWithTag("Meteor");
             activeAstronautsWhite = GameObject.FindGameObjectsWithTag("Astronaut_white");
-            //activeAstronautsOrange = GameObject.FindGameObjectsWithTag("Astronaut_orange");
+            activeAstronautsOrange = GameObject.FindGameObjectsWithTag("Astronaut_orange");
             foreach (GameObject m in activeMeteors)
             {
                 removeLine(m);
@@ -65,6 +67,10 @@ public class DebugMode : MonoBehaviour
             foreach (GameObject aW in activeAstronautsWhite)
             {
                 removeLine(aW);
+            }
+            foreach (GameObject aO in activeAstronautsOrange)
+            {
+                removeLine(aO);
             }
             removeLine(rocket);
         }
