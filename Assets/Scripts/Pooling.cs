@@ -44,8 +44,8 @@ public class Pooling : MonoBehaviour
             obj.SetActive(true);
             //obj.transform.rotation = rotation;
             //var bounds = obj.GetComponent<Collider2D>().bounds;
-            //obj.GetComponent<Rigidbody2D>().MoveRotation(rotation);
-            obj.transform.Rotate(Vector3.down, rotation);
+
+            obj.transform.Rotate(Vector3.forward, rotation, Space.Self);
 
 
             obj.transform.position = position;
