@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
         health = 100;
         score = 0;
         txtmax_score.text = "HIGH:" + bestScore;
+        gameObject.GetComponent<MeteorSpawner>().resetDifficulty();
     }
 
     public void Damage()
@@ -134,13 +135,22 @@ public class GameManager : MonoBehaviour
     {
         score += 1;
         txtScore.text = "SCORE:" + score;
+        checkScore();
     }
 
     public void Score2()
     {
         score += 2;
         txtScore.text = "SCORE:" + score;
-        //tezavnost
+        checkScore();
+    }
+
+    private void checkScore()
+    {
+        if(score % 10 == 0)
+        {
+            gameObject.GetComponent<MeteorSpawner>().increaseDifficulty();
+        }
     }
 
 

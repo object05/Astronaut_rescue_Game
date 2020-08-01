@@ -5,14 +5,19 @@ using UnityEngine;
 public class MeteorSpawner : MonoBehaviour
 {
 
-    private float interval;
+    public float interval;
     public GameObject spawnObject;
     public float timer;
     public bool stopSpawner = false;
 
+    private float startInterval;
+
+
     void Start()
     {
         interval = timer;
+        startInterval = interval;
+
     }
     void Update()
     {
@@ -32,5 +37,17 @@ public class MeteorSpawner : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void increaseDifficulty()
+    {
+        interval -= (2 / 10) * interval;
+        Debug.Log("Diff increased");
+
+    }
+
+    public void resetDifficulty()
+    {
+        interval = startInterval;
     }
 }

@@ -15,6 +15,8 @@ public class AstronautSpawner : MonoBehaviour
         interval = timer;
     }
 
+
+
     void Update()
     {
         if (!GameManager.instance.isPause)
@@ -34,4 +36,5 @@ public class AstronautSpawner : MonoBehaviour
             }
         }
     }
+
 }
