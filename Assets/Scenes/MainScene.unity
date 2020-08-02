@@ -757,6 +757,7 @@ MonoBehaviour:
   debug: 0
   grid: 1
   rocket: {fileID: 1216112975}
+  camspeed: 2
 --- !u!114 &1508386473
 MonoBehaviour:
   m_ObjectHideFlags: 0

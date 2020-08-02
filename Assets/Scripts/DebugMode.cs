@@ -15,6 +15,12 @@ public class DebugMode : MonoBehaviour
     private GameObject[] AstronautsOrange;
     public GameObject rocket;
 
+    public float camspeed = 2f;
+    private float camXstart;
+    private float camYstart;
+    private float camZstart;
+    private float camOrtho;
+
     private Queue<LineDrawer> lines;
 
     void Awake()
@@ -25,6 +31,10 @@ public class DebugMode : MonoBehaviour
 
     void Start()
     {
+        camOrtho = Camera.main.orthographicSize;
+        camXstart = Camera.main.transform.position.x;
+        camYstart = Camera.main.transform.position.y;
+        camZstart = Camera.main.transform.position.z;
         lines = new Queue<LineDrawer>();
         Meteors = GameObject.FindGameObjectsWithTag("Meteor");
         AstronautsWhite = GameObject.FindGameObjectsWithTag("Astronaut_white");
@@ -53,13 +63,14 @@ public class DebugMode : MonoBehaviour
             }
 
             setLine(rocket);
+            cameraMovement();
+
             if (grid && !gridOn)
             {
                 Debug.Log("Grid on");
                 overlayGrid();
                 gridOn = true;
             }
-
         }
     }
 
@@ -101,7 +112,6 @@ public class DebugMode : MonoBehaviour
             line.sortingOrder = 5;
             line.positionCount = 5;
 
-
             line.SetPosition(0, new Vector3(obj.GetComponent<BoxCollider2D>().bounds.min.x, obj.GetComponent<BoxCollider2D>().bounds.min.y));
             line.SetPosition(1, new Vector3(obj.GetComponent<BoxCollider2D>().bounds.min.x, obj.GetComponent<BoxCollider2D>().bounds.max.y));
             line.SetPosition(2, new Vector3(obj.GetComponent<BoxCollider2D>().bounds.max.x, obj.GetComponent<BoxCollider2D>().bounds.max.y));
@@ -122,10 +132,10 @@ public class DebugMode : MonoBehaviour
 
     private void overlayGrid()
     {
-        int startW = (int)-GameManager.instance.halfWidth;
-        int endW = (int)GameManager.instance.halfWidth;
-        int startH = (int)-GameManager.instance.halfHeight;
-        int endH = (int)GameManager.instance.halfHeight;
+        int startW = (int)-GameManager.instance.halfWidth+(int)Camera.main.transform.position.x;
+        int endW = (int)GameManager.instance.halfWidth+(int)Camera.main.transform.position.x;
+        int startH = (int)-GameManager.instance.halfHeight + (int)Camera.main.transform.position.y;
+        int endH = (int)GameManager.instance.halfHeight + (int)Camera.main.transform.position.y;
 
 
         int count = 0;
@@ -155,35 +165,45 @@ public class DebugMode : MonoBehaviour
         lines.Clear();
     }
 
-    //private void overlayGrid()
-    //{
-    //    var line = GameManager.instance.GetComponent<LineRenderer>();
+    private void cameraMovement()
+    {
+        if (Input.GetKey(KeyCode.Keypad6))
+        {
+            Camera.main.transform.Translate(new Vector3(camspeed * Time.deltaTime, 0, 0));
+        }
+        if (Input.GetKey(KeyCode.Keypad4))
+        {
+            Camera.main.transform.Translate(new Vector3(-camspeed * Time.deltaTime, 0, 0));
+        }
+        if (Input.GetKey(KeyCode.Keypad8))
+        {
+            Camera.main.transform.Translate(new Vector3(0, camspeed * Time.deltaTime, 0));
+        }
+        if (Input.GetKey(KeyCode.Keypad5))
+        {
+            Camera.main.transform.Translate(new Vector3(0, -camspeed * Time.deltaTime, 0));
+        }
 
-    //    int startW = (int)-GameManager.instance.halfWidth;
-    //    int endW = (int)GameManager.instance.halfWidth;
-    //    int startH = (int)-GameManager.instance.halfHeight;
-    //    int endH = (int)GameManager.instance.halfHeight;
+        if (Input.GetKey(KeyCode.Keypad7))
+        {
+            //Camera.main.transform.Translate(transform.forward * camspeed * Time.deltaTime, Space.Self);
+            Camera.main.orthographicSize += camspeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.Keypad9))
+        {
+            Camera.main.orthographicSize -= camspeed * Time.deltaTime;
+            //Camera.main.transform.Translate(transform.forward * -camspeed * Time.deltaTime, Space.Self);
+        }
 
-    //    Queue<Vector3> pos = new Queue<Vector3>();
+        if (Input.GetKey(KeyCode.Keypad0))
+        {
+            Camera.main.orthographicSize = camOrtho;
+            Camera.main.transform.position = new Vector3(camXstart, camYstart, camZstart);
+        }
 
-    //    int count = 0;
-    //    for (int i = startW; i <= endW; i++)
-    //    {
-    //        //Debug.DrawLine(new Vector3(startW + count, startH, 0), new Vector3(startW + count, endH, 0), Color.yellow);
-    //        pos.Enqueue(new Vector3(startW + count, startH, 0));
-    //        pos.Enqueue(new Vector3(startW + count, endH, 0));
-
-    //        count++;
-    //    }
-    //    count = 0;
-    //    for (int i = startH; i <= endH; i++)
-    //    {
-    //        pos.Enqueue(new Vector3(startW, startH + count, 0));
-    //        pos.Enqueue(new Vector3(endW, startH + count, 0));
-    //        //Debug.DrawLine(new Vector3(startW, startH + count, 0), new Vector3(endW, startH + count, 0), Color.yellow);
-    //        count++;
-    //    }
+        deleteGrid();
+        overlayGrid();
+    }
 
 
-    //}
 }
