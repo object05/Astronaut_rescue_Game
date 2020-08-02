@@ -1,6 +1,7 @@
 ﻿using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class DebugMode : MonoBehaviour
@@ -23,6 +24,9 @@ public class DebugMode : MonoBehaviour
 
     private Queue<LineDrawer> lines;
 
+    PerformanceCounter cpuCounter;
+    PerformanceCounter ramCounter;
+
     void Awake()
     {
         instance = this;
@@ -31,6 +35,13 @@ public class DebugMode : MonoBehaviour
 
     void Start()
     {
+        cpuCounter = new PerformanceCounter();
+        cpuCounter.CategoryName = "Processor";
+        cpuCounter.CounterName = "% Processor Time";
+        cpuCounter.InstanceName = "_Total";
+        ramCounter = new PerformanceCounter("Memory", "Available MBytes");
+
+
         camOrtho = Camera.main.orthographicSize;
         camXstart = Camera.main.transform.position.x;
         camYstart = Camera.main.transform.position.y;
@@ -65,9 +76,10 @@ public class DebugMode : MonoBehaviour
             setLine(rocket);
             cameraMovement();
 
+
             if (grid && !gridOn)
             {
-                Debug.Log("Grid on");
+                //Debug.Log("Grid on");
                 overlayGrid();
                 gridOn = true;
             }
@@ -163,6 +175,11 @@ public class DebugMode : MonoBehaviour
             item.Destroy();
         }
         lines.Clear();
+    }
+
+    private void memoryInfo()
+    {
+        
     }
 
     private void cameraMovement()
