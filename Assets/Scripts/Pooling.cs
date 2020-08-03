@@ -41,7 +41,7 @@ public class Pooling : MonoBehaviour
         {
             GameObject obj = dictPool[name].Dequeue();
             
-            obj.SetActive(true);
+
             //obj.transform.rotation = rotation;
             //var bounds = obj.GetComponent<Collider2D>().bounds;
 
@@ -51,7 +51,9 @@ public class Pooling : MonoBehaviour
             obj.transform.position = position;
             obj.transform.localScale = size;
             obj.GetComponent<EntityMovementComponent>().velocity = velocity;
+            obj.SetActive(true);
             active.Add(obj);
+
             //dictPool[name].Enqueue(obj);
             return obj;
         }

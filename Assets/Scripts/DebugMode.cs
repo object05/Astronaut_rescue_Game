@@ -1,8 +1,8 @@
-﻿using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
+using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DebugMode : MonoBehaviour
 {
@@ -14,6 +14,9 @@ public class DebugMode : MonoBehaviour
     private GameObject[] Meteors;
     private GameObject[] AstronautsWhite;
     private GameObject[] AstronautsOrange;
+
+    private GameObject[] objects;
+
     public GameObject rocket;
 
     public float camspeed = 2f;
@@ -22,10 +25,14 @@ public class DebugMode : MonoBehaviour
     private float camZstart;
     private float camOrtho;
 
+    public Text debugText;
+
+
     private Queue<LineDrawer> lines;
 
-    PerformanceCounter cpuCounter;
-    PerformanceCounter ramCounter;
+    int activeItems;
+
+    DebugUIManager cpuUsage;
 
     void Awake()
     {
@@ -35,18 +42,15 @@ public class DebugMode : MonoBehaviour
 
     void Start()
     {
-        cpuCounter = new PerformanceCounter();
-        cpuCounter.CategoryName = "Processor";
-        cpuCounter.CounterName = "% Processor Time";
-        cpuCounter.InstanceName = "_Total";
-        ramCounter = new PerformanceCounter("Memory", "Available MBytes");
-
+        activeItems = 0;
+        cpuUsage = gameObject.GetComponent<DebugUIManager>();
 
         camOrtho = Camera.main.orthographicSize;
         camXstart = Camera.main.transform.position.x;
         camYstart = Camera.main.transform.position.y;
         camZstart = Camera.main.transform.position.z;
         lines = new Queue<LineDrawer>();
+
         Meteors = GameObject.FindGameObjectsWithTag("Meteor");
         AstronautsWhite = GameObject.FindGameObjectsWithTag("Astronaut_white");
         AstronautsOrange = GameObject.FindGameObjectsWithTag("Astronaut_orange");
@@ -55,6 +59,7 @@ public class DebugMode : MonoBehaviour
     {
         if (debug)
         {
+            activeItems = 0;
             Meteors = GameObject.FindGameObjectsWithTag("Meteor");
             AstronautsWhite = GameObject.FindGameObjectsWithTag("Astronaut_white");
             AstronautsOrange = GameObject.FindGameObjectsWithTag("Astronaut_orange");
@@ -75,6 +80,7 @@ public class DebugMode : MonoBehaviour
 
             setLine(rocket);
             cameraMovement();
+            memoryInfo();
 
 
             if (grid && !gridOn)
@@ -90,6 +96,7 @@ public class DebugMode : MonoBehaviour
     {
         if (debug)
         {
+            
             Meteors = GameObject.FindGameObjectsWithTag("Meteor");
             AstronautsWhite = GameObject.FindGameObjectsWithTag("Astronaut_white");
             AstronautsOrange = GameObject.FindGameObjectsWithTag("Astronaut_orange");
@@ -107,6 +114,8 @@ public class DebugMode : MonoBehaviour
             }
             removeLine(rocket);
             deleteGrid();//todo olepsaj
+
+            debugText.text = "";
         }
 
         debug = !debug;
@@ -118,8 +127,9 @@ public class DebugMode : MonoBehaviour
     {
         if (obj.activeSelf)
         {
+            activeItems++;
             var line = obj.GetComponent<LineRenderer>();
-
+            
             line.sortingLayerName = "OnTop";
             line.sortingOrder = 5;
             line.positionCount = 5;
@@ -139,6 +149,7 @@ public class DebugMode : MonoBehaviour
 
     public void removeLine(GameObject obj)
     {
+        //obj.GetComponent<LineRenderer>().enabled = false;
         obj.GetComponent<LineRenderer>().enabled = false;
     }
 
@@ -179,7 +190,8 @@ public class DebugMode : MonoBehaviour
 
     private void memoryInfo()
     {
-        
+        debugText.text = "CPU: " + cpuUsage.CpuUsage + "%\n"+
+                         "Active objects: "+ activeItems;
     }
 
     private void cameraMovement()
