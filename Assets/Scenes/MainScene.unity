@@ -641,8 +641,8 @@ GameObject:
   - component: {fileID: 1508386469}
   - component: {fileID: 1508386472}
   - component: {fileID: 1508386473}
-  - component: {fileID: 1508386474}
   - component: {fileID: 1508386475}
+  - component: {fileID: 1508386474}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -699,7 +699,7 @@ MonoBehaviour:
   spawnObject: {fileID: 433725839981696755, guid: 53fac7cef59bbb04ea324df0fdf6a403,
     type: 3}
   timer: 5
-  stopSpawner: 1
+  stopSpawner: 0
 --- !u!114 &1508386470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -775,7 +775,7 @@ MonoBehaviour:
   spawnObject: {fileID: 5605164725572373136, guid: aaaf5f8473220614db55b6b14f1dad68,
     type: 3}
   timer: 8
-  stopSpawner: 1
+  stopSpawner: 0
 --- !u!114 &1508386474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -783,12 +783,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508386466}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4fc18ac8e4fc0f449e2f27dcb926b68, type: 3}
+  m_Script: {fileID: 11500000, guid: db6479fad568a3c4a81216da814367dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enabled: 0
+  updateInterval: 1
+  processorCount: 2
+  CpuUsage: 0
 --- !u!120 &1508386475
 LineRenderer:
   m_ObjectHideFlags: 0
