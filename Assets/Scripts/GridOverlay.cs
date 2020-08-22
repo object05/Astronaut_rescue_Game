@@ -9,12 +9,6 @@ public class GridOverlay : MonoBehaviour
     {
         if (enabled)
         {
-            //int startW = (int)-GameManager.instance.halfWidth+(int)GameManager.instance.halfWidth;
-            //int endW = (int)GameManager.instance.halfWidth + (int)GameManager.instance.halfWidth;
-
-            //int startH = (int)-GameManager.instance.halfHeight + (int)GameManager.instance.halfHeight;
-            //int endH = (int)GameManager.instance.halfHeight + (int)GameManager.instance.halfHeight;
-
             int startW = (int)-GameManager.instance.halfWidth;
             int endW = (int)GameManager.instance.halfWidth;
 

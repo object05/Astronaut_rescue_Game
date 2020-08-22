@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using UnityEngine;
 
-public class MovementComponent : MonoBehaviour
+public class MovementSystem : MonoBehaviour
 {
     public float movementSpeed;
     private CharacterController controller;
@@ -24,7 +24,7 @@ public class MovementComponent : MonoBehaviour
             float halfHeight = GameManager.instance.halfHeight;
             float halfWidth = GameManager.instance.halfWidth;
 
-            halfHeight = Camera.main.orthographicSize;//todo make better
+            halfHeight = Camera.main.orthographicSize;
             halfWidth = Camera.main.aspect * halfHeight;
 
             move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);

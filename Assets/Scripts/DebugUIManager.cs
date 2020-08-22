@@ -4,12 +4,15 @@ using System.Linq;
 using System.Threading;
 using TMPro;
 using UnityEngine;
+/*
+ Prenešeno 27.7.2020
+ Dostopno na: https://stackoverflow.com/questions/56684306/how-to-read-system-usage-cpu-ram-etc
+ Avtor: derHugo
+ */
+
 
 public class DebugUIManager : MonoBehaviour
 {
-    [Header("Components")]
-
-    [Header("Settings")]
 
     [Tooltip("In which interval should the CPU usage be updated?")]
     [SerializeField] private float updateInterval = 1;
@@ -17,8 +20,6 @@ public class DebugUIManager : MonoBehaviour
     [Tooltip("The amount of physical CPU cores")]
     [SerializeField] private int processorCount;
 
-
-    [Header("Output")]
     public float CpuUsage;
 
     private Thread _cpuThread;
@@ -110,3 +111,4 @@ public class DebugUIManager : MonoBehaviour
         }
     }
 }
+

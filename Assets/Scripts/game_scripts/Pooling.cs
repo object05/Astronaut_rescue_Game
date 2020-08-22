@@ -40,20 +40,12 @@ public class Pooling : MonoBehaviour
         if (dictPool.ContainsKey(name))
         {
             GameObject obj = dictPool[name].Dequeue();
-            
-
-            //obj.transform.rotation = rotation;
-            //var bounds = obj.GetComponent<Collider2D>().bounds;
-
             obj.transform.Rotate(Vector3.forward, rotation, Space.Self);
-
-
             obj.transform.position = position;
             obj.transform.localScale = size;
-            obj.GetComponent<EntityMovementComponent>().velocity = velocity;
+            obj.GetComponent<EntityMovement>().velocity = velocity;
             obj.SetActive(true);
             active.Add(obj);
-
             //dictPool[name].Enqueue(obj);
             return obj;
         }

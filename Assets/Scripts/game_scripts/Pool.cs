@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[System.Serializable]//make this class accessable
+[System.Serializable]
 public class Pool
 {
     public int poolSize;

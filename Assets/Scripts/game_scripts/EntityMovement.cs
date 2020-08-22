@@ -4,8 +4,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 
 
-[System.Serializable]
-public class EntityMovementComponent : MonoBehaviour
+public class EntityMovement : MonoBehaviour
 {
     public float velocity;
     void Update()

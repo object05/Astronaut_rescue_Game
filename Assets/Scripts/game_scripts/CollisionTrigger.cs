@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollisionTriggerComponent : MonoBehaviour
+public class CollisionTrigger : MonoBehaviour
 {
     public AudioClip Hit;
     public AudioClip Pick;

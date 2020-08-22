@@ -1,6 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+/*
+  Prenešeno 29.7.2020
+  Dostopno na: https://stackoverflow.com/questions/42819071/debug-drawline-not-showing-in-the-gameview
+  Avtor: Programmer
+ */
+
 public struct LineDrawer
 {
     private LineRenderer lineRenderer;
